@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jam.ff.recyclerview.CustomerActivity">
+
+    <com.jam.ff.recyclerview.widget.CustomerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/small_padding"
+        app:text="1234"
+        app:textColor="@color/colorAccent"
+        app:textSize="@dimen/text_size" />
+
+</RelativeLayout>
