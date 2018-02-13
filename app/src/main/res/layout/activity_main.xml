@@ -5,31 +5,32 @@
     android:layout_height="match_parent"
     tools:context="com.jam.ff.recyclerview.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <Button
-        android:id="@+id/change"
+        android:id="@+id/btn_change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/change" />
 
     <Button
-        android:id="@+id/change_orientation"
+        android:id="@+id/btn_staggered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/change"
-        android:layout_toRightOf="@id/change"
-        android:text="@string/change_orientation" />
+        android:layout_toEndOf="@id/btn_change"
+        android:layout_toRightOf="@id/btn_change"
+        android:text="@string/staggered" />
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/btn_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/change_orientation"
-        android:layout_toRightOf="@id/change_orientation"
+        android:layout_toEndOf="@id/btn_staggered"
+        android:layout_toRightOf="@id/btn_staggered"
         android:text="@string/customer_view" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btn_change" />
 
 </RelativeLayout>

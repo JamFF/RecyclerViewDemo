@@ -6,13 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
 import com.jam.ff.recyclerview.adapter.BaseRecyclerAdapter;
 import com.jam.ff.recyclerview.adapter.MyRecyclerAdapter;
-import com.jam.ff.recyclerview.adapter.StaggeredRecyclerAdapter;
 import com.jam.ff.recyclerview.bean.DataBean;
 import com.jam.ff.recyclerview.widget.MyDividerGridItemDecoration;
 import com.jam.ff.recyclerview.widget.MyDividerItemDecoration;
@@ -24,18 +22,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private RecyclerView mRecyclerView;
 
-    private StaggeredRecyclerAdapter mStaggeredRecyclerAdapter;
-
     private MyRecyclerAdapter mRecyclerAdapter;
 
     private List<DataBean> mList = new ArrayList<>();
 
     private boolean isGrid = false;
 
-    private boolean isHorizontal = false;
+    private MyDividerItemDecoration mDecoration;// Linear样式
 
-    private MyDividerItemDecoration mDecoration;
-    private MyDividerGridItemDecoration mGridDecoration;
+    private MyDividerGridItemDecoration mGridDecoration;// Grid样式间隔线
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,26 +42,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         mRecyclerView = findViewById(R.id.recycler);
-        findViewById(R.id.change).setOnClickListener(this);
-        findViewById(R.id.add).setOnClickListener(this);
-        findViewById(R.id.change_orientation).setOnClickListener(this);
+        findViewById(R.id.btn_change).setOnClickListener(this);
+        findViewById(R.id.btn_customer).setOnClickListener(this);
+        findViewById(R.id.btn_staggered).setOnClickListener(this);
     }
 
     private void initData() {
         for (int i = 0; i < 100; i++) {
             mList.add(new DataBean("item " + i, (int) Math.max(200, Math.random() * 550)));
         }
-        setLinearLayout();
+        setRecyclerView();
     }
 
-    private void setLinearLayout() {
+    private void setRecyclerView() {
         mRecyclerAdapter = new MyRecyclerAdapter(mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
-                isHorizontal ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL,
-                false));
+                LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mRecyclerAdapter);
-        mDecoration = new MyDividerItemDecoration(this,
-                isHorizontal ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL);
+
+        mDecoration = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        mGridDecoration = new MyDividerGridItemDecoration(this);
+
         mRecyclerView.addItemDecoration(mDecoration);
 
         mRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
@@ -87,75 +83,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    // 瀑布流
-    private void setStaggered() {
-        mStaggeredRecyclerAdapter = new StaggeredRecyclerAdapter(mList);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,
-                StaggeredGridLayoutManager.VERTICAL));
-        mRecyclerView.setAdapter(mStaggeredRecyclerAdapter);
-
-        mStaggeredRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Toast.makeText(MainActivity.this, "onClick " + position, Toast.LENGTH_SHORT).show();
-                mStaggeredRecyclerAdapter.add(position);
-            }
-        });
-
-        mStaggeredRecyclerAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
-            @Override
-            public boolean onLongClick(View v, int position) {
-                Toast.makeText(MainActivity.this, "onLongClick " + position, Toast.LENGTH_SHORT).show();
-                mStaggeredRecyclerAdapter.remove(position);
-                return true;
-            }
-        });
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.change:
+            case R.id.btn_change:
                 if (isGrid) {
                     mRecyclerView.removeItemDecoration(mGridDecoration);
                     mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
-                            isHorizontal ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL,
-                            false));
-                    mDecoration = new MyDividerItemDecoration(this,
-                            isHorizontal ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL);
+                            LinearLayoutManager.VERTICAL, false));
                     mRecyclerView.addItemDecoration(mDecoration);
                 } else {
                     mRecyclerView.removeItemDecoration(mDecoration);
                     mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3,
-                            isHorizontal ? GridLayoutManager.HORIZONTAL : GridLayoutManager.VERTICAL,
-                            false));
-                    mGridDecoration = new MyDividerGridItemDecoration(this);
+                            GridLayoutManager.VERTICAL, false));
                     mRecyclerView.addItemDecoration(mGridDecoration);
                 }
                 isGrid = !isGrid;
                 break;
-            case R.id.change_orientation:
-
-                isHorizontal = !isHorizontal;
-                if (isGrid) {
-                    mRecyclerView.removeItemDecoration(mGridDecoration);
-                    mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3,
-                            isHorizontal ? GridLayoutManager.HORIZONTAL : GridLayoutManager.VERTICAL,
-                            false));
-                    mGridDecoration = new MyDividerGridItemDecoration(this);
-                    mRecyclerView.addItemDecoration(mGridDecoration);
-                } else {
-                    mRecyclerView.removeItemDecoration(mDecoration);
-                    mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
-                            isHorizontal ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL,
-                            false));
-                    mDecoration = new MyDividerItemDecoration(this,
-                            isHorizontal ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL);
-                    mRecyclerView.addItemDecoration(mDecoration);
-                }
+            case R.id.btn_staggered:
+                startActivity(new Intent(this, StaggeredActivity.class));
                 break;
-            case R.id.add:
-                startActivity(new Intent(MainActivity.this, CustomerActivity.class));
+            case R.id.btn_customer:
+                startActivity(new Intent(this, CustomerActivity.class));
                 break;
         }
     }

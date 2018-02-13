@@ -11,6 +11,7 @@ import com.jam.ff.recyclerview.bean.DataBean;
 import java.util.List;
 
 /**
+ * 瀑布流样式
  * Created by jamff on 2018/2/4 11:05.
  */
 
@@ -77,6 +78,10 @@ public class StaggeredRecyclerAdapter extends BaseRecyclerAdapter<DataBean> {
         }
     }
 
+    /**
+     * 当有item删除，插入时，不要使用，position不会改变
+     * 当没有item变化时，建议使用，防止position错位
+     */
     class MyOnClickListener implements View.OnClickListener, View.OnLongClickListener {
 
         private int pos;
