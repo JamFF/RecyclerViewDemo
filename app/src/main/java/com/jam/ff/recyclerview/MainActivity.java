@@ -41,10 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
-        mRecyclerView = findViewById(R.id.recycler);
+        mRecyclerView = findViewById(R.id.recyclerView);
         findViewById(R.id.btn_change).setOnClickListener(this);
         findViewById(R.id.btn_customer).setOnClickListener(this);
         findViewById(R.id.btn_staggered).setOnClickListener(this);
+        findViewById(R.id.btn_header).setOnClickListener(this);
     }
 
     private void initData() {
@@ -105,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_customer:
                 startActivity(new Intent(this, CustomerActivity.class));
+                break;
+            case R.id.btn_header:
+                startActivity(new Intent(this, HeaderViewActivity.class));
+                break;
+            default:
                 break;
         }
     }

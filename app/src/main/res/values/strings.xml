@@ -3,4 +3,5 @@
     <string name="change">切换模式</string>
     <string name="customer_view">自定义控件</string>
     <string name="staggered">瀑布流</string>
+    <string name="headerView">头部</string>
 </resources>
