@@ -1,44 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jam.ff.recyclerview.MainActivity">
 
     <Button
-        android:id="@+id/btn_change"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_recyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/change" />
-
-    <Button
-        android:id="@+id/btn_staggered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/btn_change"
-        android:layout_toRightOf="@id/btn_change"
-        android:text="@string/staggered" />
+        android:text="@string/recyclerView"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn_customer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/btn_staggered"
-        android:layout_toRightOf="@id/btn_staggered"
         android:text="@string/customer_view" />
 
     <Button
         android:id="@+id/btn_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/btn_customer"
-        android:layout_toRightOf="@id/btn_customer"
-        android:text="@string/headerView" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/btn_change" />
+        android:layout_height="wrap_content"
+        android:text="@string/headerView"
+        android:textAllCaps="false" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btn_qq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/qq" />
+
+</LinearLayout>

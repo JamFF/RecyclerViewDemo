@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+    <string name="recyclerView">RecyclerView</string>
     <string name="change">切换模式</string>
-    <string name="customer_view">自定义控件</string>
     <string name="staggered">瀑布流</string>
-    <string name="headerView">头部</string>
+    <string name="customer_view">自定义控件</string>
+    <string name="headerView">HeaderView</string>
+    <string name="qq">仿QQ</string>
 </resources>

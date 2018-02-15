@@ -17,8 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".CustomerActivity" />
+        <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".StaggeredActivity" />
-        <activity android:name=".HeaderViewActivity"></activity>
+        <activity android:name=".HeaderViewActivity" />
     </application>
 
 </manifest>
