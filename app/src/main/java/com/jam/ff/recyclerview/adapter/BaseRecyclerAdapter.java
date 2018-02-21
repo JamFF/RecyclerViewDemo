@@ -2,6 +2,7 @@ package com.jam.ff.recyclerview.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -9,8 +10,7 @@ import java.util.List;
  * RecyclerAdapter的基类
  * Created by jamff on 2018/2/4 11:05.
  */
-
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder> {
+public abstract class BaseRecyclerAdapter<T, VH extends BaseRecyclerAdapter.BaseViewHolder> extends RecyclerView.Adapter<VH> {
 
     public BaseRecyclerAdapter(List<T> list) {
         mList = list;
@@ -47,14 +47,20 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     }
 
     @Override
+    public abstract VH onCreateViewHolder(ViewGroup parent, int viewType);
+
+    @Override
+    public abstract void onBindViewHolder(VH holder, int position);
+
+    @Override
     public int getItemCount() {
         return mList.size();
     }
 
 
-    abstract class ViewHolder extends RecyclerView.ViewHolder {
+    public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(View itemView) {
+        public BaseViewHolder(View itemView) {
             super(itemView);
         }
 

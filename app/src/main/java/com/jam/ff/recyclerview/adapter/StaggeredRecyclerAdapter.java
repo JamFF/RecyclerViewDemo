@@ -15,7 +15,7 @@ import java.util.List;
  * Created by jamff on 2018/2/4 11:05.
  */
 
-public class StaggeredRecyclerAdapter extends BaseRecyclerAdapter<DataBean> {
+public class StaggeredRecyclerAdapter extends BaseRecyclerAdapter<DataBean, StaggeredRecyclerAdapter.ViewHolder> {
 
     public StaggeredRecyclerAdapter(List<DataBean> list) {
         super(list);
@@ -32,7 +32,7 @@ public class StaggeredRecyclerAdapter extends BaseRecyclerAdapter<DataBean> {
     }
 
     @Override
-    public void onBindViewHolder(final BaseRecyclerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.setData(mList.get(position));
         if (mItemClickListener != null) {
             // 避免点击事件错位，可以将position传入，保证位置准确
@@ -58,7 +58,7 @@ public class StaggeredRecyclerAdapter extends BaseRecyclerAdapter<DataBean> {
         }
     }
 
-    class ViewHolder extends BaseRecyclerAdapter<DataBean>.ViewHolder {
+    class ViewHolder extends BaseRecyclerAdapter<DataBean, StaggeredRecyclerAdapter.ViewHolder>.BaseViewHolder {
 
         public ViewHolder(View itemView) {
             super(itemView);

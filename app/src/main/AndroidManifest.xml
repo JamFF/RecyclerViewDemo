@@ -20,6 +20,9 @@
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".StaggeredActivity" />
         <activity android:name=".HeaderViewActivity" />
+        <activity
+            android:name=".qq.QQActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

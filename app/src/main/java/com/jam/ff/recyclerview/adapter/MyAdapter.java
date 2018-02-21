@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by jamff on 2018/2/14 20:42.
  */
-public class MyAdapter extends BaseRecyclerAdapter<String> {
+public class MyAdapter extends BaseRecyclerAdapter<String, MyAdapter.ViewHolder> {
 
     public MyAdapter(List<String> list) {
         super(list);
@@ -27,11 +27,11 @@ public class MyAdapter extends BaseRecyclerAdapter<String> {
     }
 
     @Override
-    public void onBindViewHolder(BaseRecyclerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setData(mList.get(position));
     }
 
-    class ViewHolder extends BaseRecyclerAdapter<String>.ViewHolder {
+    class ViewHolder extends BaseRecyclerAdapter<String, MyAdapter.ViewHolder>.BaseViewHolder {
 
         public TextView tv;
 
