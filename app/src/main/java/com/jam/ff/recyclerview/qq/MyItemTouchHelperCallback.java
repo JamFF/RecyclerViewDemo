@@ -1,8 +1,11 @@
 package com.jam.ff.recyclerview.qq;
 
+import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+
+import com.jam.ff.recyclerview.R;
 
 /**
  * 使用ItemTouchHelper实现拖拽和侧滑删除
@@ -47,5 +50,53 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
     public boolean isLongPressDragEnabled() {
         // 长按移动，默认true
         return super.isLongPressDragEnabled();
+    }
+
+    @Override
+    public boolean isItemViewSwipeEnabled() {
+        // 侧滑删除，默认true
+        return super.isItemViewSwipeEnabled();
+    }
+
+    @Override
+    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+        super.onSelectedChanged(viewHolder, actionState);
+        if (viewHolder != null) {
+            // 判断选中状态
+            switch (actionState) {
+                case ItemTouchHelper.ACTION_STATE_SWIPE:
+                    viewHolder.itemView.setBackgroundResource(android.R.color.darker_gray);
+                    break;
+                case ItemTouchHelper.ACTION_STATE_DRAG:
+                    viewHolder.itemView.setBackgroundResource(R.color.colorPrimary);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                            float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        // dX:水平方向移动的增量（负：往左；正：往右）范围：0~View.getWidth
+        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+            // 透明度动画
+            float alpha = 1 - Math.abs(dX) / viewHolder.itemView.getWidth();
+            viewHolder.itemView.setAlpha(alpha);// 1~0
+            viewHolder.itemView.setScaleX(alpha);// 1~0
+            viewHolder.itemView.setScaleY(alpha);// 1~0
+        }
+    }
+
+    @Override
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        super.clearView(recyclerView, viewHolder);
+        // 恢复
+        viewHolder.itemView.setBackgroundResource(android.R.color.white);
+        viewHolder.itemView.setAlpha(1);
+        viewHolder.itemView.setScaleX(1);
+        viewHolder.itemView.setScaleY(1);
     }
 }
