@@ -16,7 +16,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private static final String TAG = "MyItemTouchHelper";
 
-    private ItemTouchMoveListener mMoveListener;
+    private final ItemTouchMoveListener mMoveListener;
 
     public MyItemTouchHelperCallback(ItemTouchMoveListener moveListener) {
         mMoveListener = moveListener;
@@ -24,7 +24,6 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
         int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
         return makeMovementFlags(dragFlags, swipeFlags);
