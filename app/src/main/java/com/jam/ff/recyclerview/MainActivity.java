@@ -2,44 +2,64 @@ package com.jam.ff.recyclerview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
+import com.jam.ff.recyclerview.fragment.CustomViewFragment;
+import com.jam.ff.recyclerview.fragment.HeaderViewFragment;
+import com.jam.ff.recyclerview.fragment.MainFragment;
+import com.jam.ff.recyclerview.fragment.RecyclerViewFragment;
 import com.jam.ff.recyclerview.qq.QQActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnListItemClickListener {
+
+    private FrameLayout mRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
-    }
 
-    private void initView() {
-        findViewById(R.id.btn_recyclerView).setOnClickListener(this);
-        findViewById(R.id.btn_customer).setOnClickListener(this);
-        findViewById(R.id.btn_header).setOnClickListener(this);
-        findViewById(R.id.btn_qq).setOnClickListener(this);
+        mRoot = new FrameLayout(this);
+        mRoot.setId(View.generateViewId());// API 17以上
+        findViewById(mRoot.getId());
+        mRoot.setLayoutParams(new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        setContentView(mRoot);
+
+        if (savedInstanceState == null) {
+            MainFragment fragment = new MainFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(mRoot.getId(), fragment)
+                    .commit();
+        }
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_recyclerView:
-                startActivity(new Intent(this, RecyclerViewActivity.class));
+    public void onListItemClick(int position) {
+        Fragment fragment;
+        switch (position) {
+            case 0:
+                fragment = new RecyclerViewFragment();
                 break;
-            case R.id.btn_customer:
-                startActivity(new Intent(this, CustomerActivity.class));
+            case 1:
+                fragment = new CustomViewFragment();
                 break;
-            case R.id.btn_header:
-                startActivity(new Intent(this, HeaderViewActivity.class));
+            case 2:
+                fragment = new HeaderViewFragment();
                 break;
-            case R.id.btn_qq:
+            case 3:
                 startActivity(new Intent(this, QQActivity.class));
-                break;
+                return;
             default:
-                break;
+                return;
+
         }
+        getSupportFragmentManager().beginTransaction()
+                .replace(mRoot.getId(), fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

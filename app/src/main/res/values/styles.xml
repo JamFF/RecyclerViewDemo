@@ -10,7 +10,7 @@
         <item name="textColor">@color/colorPrimaryDark</item>
         <item name="textSize">@dimen/text_size_small</item>
         <!--这样替换了listView中的间隔线-->
-        <item name="android:listDivider">@drawable/item_divider</item>
+        <!--<item name="android:listDivider">@drawable/item_divider</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">

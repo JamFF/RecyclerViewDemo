@@ -1,14 +1,20 @@
-package com.jam.ff.recyclerview;
+package com.jam.ff.recyclerview.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.jam.ff.recyclerview.R;
+import com.jam.ff.recyclerview.StaggeredActivity;
 import com.jam.ff.recyclerview.adapter.BaseRecyclerAdapter;
 import com.jam.ff.recyclerview.adapter.MyRecyclerAdapter;
 import com.jam.ff.recyclerview.bean.DataBean;
@@ -18,7 +24,13 @@ import com.jam.ff.recyclerview.widget.MyDividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * RecyclerView
+ * Created by jamff on 2018/2/25 09:48.
+ */
+public class RecyclerViewFragment extends Fragment implements View.OnClickListener {
+
+    private Context mContext;
 
     private RecyclerView mRecyclerView;
 
@@ -33,17 +45,22 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
     private MyDividerGridItemDecoration mGridDecoration;// Grid样式间隔线
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view);
-        initView();
-        initData();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 
-    private void initView() {
-        mRecyclerView = findViewById(R.id.recyclerView);
-        findViewById(R.id.btn_change).setOnClickListener(this);
-        findViewById(R.id.btn_staggered).setOnClickListener(this);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_recycler_view,
+                container, false);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
+        view.findViewById(R.id.btn_change).setOnClickListener(this);
+        view.findViewById(R.id.btn_staggered).setOnClickListener(this);
+        initData();
+        return view;
     }
 
     private void initData() {
@@ -55,19 +72,19 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
 
     private void setRecyclerView() {
         mRecyclerAdapter = new MyRecyclerAdapter(mList);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,
                 LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mRecyclerAdapter);
 
-        mDecoration = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-        mGridDecoration = new MyDividerGridItemDecoration(this);
+        mDecoration = new MyDividerItemDecoration(mContext, LinearLayoutManager.VERTICAL);
+        mGridDecoration = new MyDividerGridItemDecoration(mContext);
 
         mRecyclerView.addItemDecoration(mDecoration);
 
         mRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Toast.makeText(RecyclerViewActivity.this, "onClick " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "onClick " + position, Toast.LENGTH_SHORT).show();
                 mRecyclerAdapter.add(position);
             }
         });
@@ -75,7 +92,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
         mRecyclerAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
             @Override
             public boolean onLongClick(View v, int position) {
-                Toast.makeText(RecyclerViewActivity.this, "onLongClick " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "onLongClick " + position, Toast.LENGTH_SHORT).show();
                 mRecyclerAdapter.remove(position);
                 return true;
             }
@@ -88,19 +105,19 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
             case R.id.btn_change:
                 if (isGrid) {
                     mRecyclerView.removeItemDecoration(mGridDecoration);
-                    mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
+                    mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,
                             LinearLayoutManager.VERTICAL, false));
                     mRecyclerView.addItemDecoration(mDecoration);
                 } else {
                     mRecyclerView.removeItemDecoration(mDecoration);
-                    mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3,
+                    mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3,
                             GridLayoutManager.VERTICAL, false));
                     mRecyclerView.addItemDecoration(mGridDecoration);
                 }
                 isGrid = !isGrid;
                 break;
             case R.id.btn_staggered:
-                startActivity(new Intent(this, StaggeredActivity.class));
+                startActivity(new Intent(mContext, StaggeredActivity.class));
                 break;
             default:
                 break;
