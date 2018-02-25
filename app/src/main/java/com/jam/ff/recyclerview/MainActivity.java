@@ -1,6 +1,5 @@
 package com.jam.ff.recyclerview;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +10,8 @@ import android.widget.FrameLayout;
 import com.jam.ff.recyclerview.fragment.CustomViewFragment;
 import com.jam.ff.recyclerview.fragment.HeaderViewFragment;
 import com.jam.ff.recyclerview.fragment.MainFragment;
+import com.jam.ff.recyclerview.fragment.QQFragment;
 import com.jam.ff.recyclerview.fragment.RecyclerViewFragment;
-import com.jam.ff.recyclerview.qq.QQActivity;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.OnListItemClickListener {
 
@@ -51,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
                 fragment = new HeaderViewFragment();
                 break;
             case 3:
-                startActivity(new Intent(this, QQActivity.class));
-                return;
+                fragment = new QQFragment();
+                break;
             default:
                 return;
 

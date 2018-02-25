@@ -43,12 +43,6 @@ public class MainFragment extends ListFragment {
     }
 
     @Override
-    public void onDetach() {
-        mItemClickListener = null;
-        super.onDetach();
-    }
-
-    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         if (mItemClickListener != null) {

@@ -63,6 +63,7 @@ public class QQAdapter extends BaseRecyclerAdapter<QQMessage, QQAdapter.ViewHold
         private final TextView tv_name;
         private final TextView tv_lastMsg;
         private final TextView tv_time;
+        public final TextView tv_delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -70,6 +71,7 @@ public class QQAdapter extends BaseRecyclerAdapter<QQMessage, QQAdapter.ViewHold
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_lastMsg = itemView.findViewById(R.id.tv_lastMsg);
             tv_time = itemView.findViewById(R.id.tv_time);
+            tv_delete = itemView.findViewById(R.id.tv_delete);
         }
 
         @Override

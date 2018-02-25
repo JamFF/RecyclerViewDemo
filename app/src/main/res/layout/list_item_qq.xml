@@ -2,23 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="@android:color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
     android:paddingTop="8dp">
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:orientation="vertical">
 
@@ -31,9 +30,8 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -41,7 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textColor="#a6a6a6"
                 android:textSize="12sp" />
@@ -58,7 +55,6 @@
                 android:id="@+id/tv_lastMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:textColor="#808080"
@@ -68,9 +64,25 @@
                 android:id="@+id/iv_pop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="#f33213">
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="右滑删除"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </FrameLayout>
 
 </LinearLayout>

@@ -56,9 +56,11 @@ public class RecyclerViewFragment extends Fragment implements View.OnClickListen
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view,
                 container, false);
+
         mRecyclerView = view.findViewById(R.id.recyclerView);
         view.findViewById(R.id.btn_change).setOnClickListener(this);
         view.findViewById(R.id.btn_staggered).setOnClickListener(this);
+
         initData();
         return view;
     }
