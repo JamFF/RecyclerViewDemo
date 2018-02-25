@@ -71,9 +71,10 @@ public class RecyclerViewFragment extends Fragment implements View.OnClickListen
     }
 
     private void setRecyclerView() {
-        mRecyclerAdapter = new MyRecyclerAdapter(mList);
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,
                 LinearLayoutManager.VERTICAL, false));
+        mRecyclerAdapter = new MyRecyclerAdapter(mList);
         mRecyclerView.setAdapter(mRecyclerAdapter);
 
         mDecoration = new MyDividerItemDecoration(mContext, LinearLayoutManager.VERTICAL);

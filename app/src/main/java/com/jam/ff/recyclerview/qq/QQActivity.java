@@ -26,6 +26,7 @@ public class QQActivity extends AppCompatActivity implements StartDragListener {
 
     private void initView() {
         mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 

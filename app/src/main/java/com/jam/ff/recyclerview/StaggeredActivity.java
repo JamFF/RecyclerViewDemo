@@ -47,9 +47,10 @@ public class StaggeredActivity extends AppCompatActivity {
     }
 
     private void setStaggered() {
-        mStaggeredRecyclerAdapter = new StaggeredRecyclerAdapter(mList);
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,
                 StaggeredGridLayoutManager.VERTICAL));
+        mStaggeredRecyclerAdapter = new StaggeredRecyclerAdapter(mList);
         mRecyclerView.setAdapter(mStaggeredRecyclerAdapter);
 
         mRecyclerView.addItemDecoration(new MyDividerStaggeredItemDecoration(this));

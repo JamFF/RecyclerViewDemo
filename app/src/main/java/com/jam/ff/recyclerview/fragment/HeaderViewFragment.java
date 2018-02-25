@@ -59,6 +59,7 @@ public class HeaderViewFragment extends Fragment {
             list.add("item " + i);
         }
 
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(new MyAdapter(list));
         return recyclerView;
