@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RecyclerView
  * Created by jamff on 2018/2/25 09:48.
  */
 public class RecyclerViewFragment extends Fragment implements View.OnClickListener {
@@ -88,7 +87,7 @@ public class RecyclerViewFragment extends Fragment implements View.OnClickListen
             @Override
             public void onClick(View v, int position) {
                 Toast.makeText(mContext, "onClick " + position, Toast.LENGTH_SHORT).show();
-                mRecyclerAdapter.add(position);
+                mRecyclerAdapter.addItem(position);
             }
         });
 
@@ -96,7 +95,7 @@ public class RecyclerViewFragment extends Fragment implements View.OnClickListen
             @Override
             public boolean onLongClick(View v, int position) {
                 Toast.makeText(mContext, "onLongClick " + position, Toast.LENGTH_SHORT).show();
-                mRecyclerAdapter.remove(position);
+                mRecyclerAdapter.removeItem(position);
                 return true;
             }
         });

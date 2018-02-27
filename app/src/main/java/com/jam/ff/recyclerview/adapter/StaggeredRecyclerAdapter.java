@@ -72,9 +72,12 @@ public class StaggeredRecyclerAdapter extends BaseRecyclerAdapter<DataBean, Stag
             tv.setText(dataBean.getText());
             tv.setBackgroundColor(Color.rgb(100,
                     (int) (Math.random() * 255), (int) (Math.random() * 255)));
+            // 当Item中的tv没有父布局，并且使用View.inflate()时，这里返回null
             ViewGroup.LayoutParams params = tv.getLayoutParams();
-            params.height = dataBean.getHeight();
-            tv.setLayoutParams(params);
+            if (params != null) {
+                params.height = dataBean.getHeight();
+                tv.setLayoutParams(params);
+            }
         }
     }
 

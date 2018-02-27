@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 /**
- * 内部的Adapter，装饰者模式，注意这里ViewHolder不能使用反省
+ * 内部的Adapter，装饰者模式，注意这里ViewHolder不能使用泛型，因为ViewHolder不一致
  * Created by jamff on 2018/2/13 23:04.
  */
 public class HeaderViewRecyclerAdapter extends RecyclerView.Adapter {

@@ -16,13 +16,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/btn_change"
-        android:layout_toRightOf="@id/btn_change"
         android:text="@string/staggered" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_change" />
+        android:layout_below="@id/btn_change"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>
