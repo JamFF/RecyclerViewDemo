@@ -89,7 +89,8 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-        // 恢复
+        // 当完成onMove或onSwiped后，会回调该方法
+        // 在这里进行恢复
         viewHolder.itemView.setBackgroundResource(android.R.color.white);
         viewHolder.itemView.setAlpha(1);
         viewHolder.itemView.setScaleX(1);
