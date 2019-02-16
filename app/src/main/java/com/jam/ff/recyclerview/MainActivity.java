@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
 
         mRoot = new FrameLayout(this);
         mRoot.setId(View.generateViewId());// API 17以上
-        findViewById(mRoot.getId());
         mRoot.setLayoutParams(new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         setContentView(mRoot);
