@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import com.jam.ff.recyclerview.R;
 
+import java.util.Objects;
+
 /**
  * Created by jamff on 2018/2/24 15:34.
  */
@@ -37,7 +39,7 @@ public class MainFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         final String[] items = getResources().getStringArray(R.array.main_items);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),
                 android.R.layout.simple_list_item_1, items);
         setListAdapter(adapter);
     }
